@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Shop - Order Form</title>
+
+<style>
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --dark:#111827;
+    --text:#1f2937;
+    --muted:#64748b;
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --border:#e2e8f0;
+    --shadow:0 12px 35px rgba(15,23,42,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#111827,#1e293b);
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+
+.shop-name{
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:.3px;
+}
+
+.shop-subtitle{
+    margin-top:7px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(226,232,240,.7);
+}
+
+.section-title{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+/* ================= CUSTOMER ================= */
+
+.customer-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.input-group label{
+    font-size:13px;
+    font-weight:700;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    outline:none;
+    font-size:14px;
+    background:#fff;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+/* ================= PRODUCT SEARCH ================= */
+
+.product-tools{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.search-box{
+    flex:1;
+    padding:13px 15px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    outline:none;
+    font-size:14px;
+}
+
+.search-box:focus{
+    border-color:var(--primary);
+}
+
+/* ================= PRODUCT TABLE ================= */
+
+.product-header{
+    display:grid;
+    grid-template-columns:minmax(180px,1fr) 150px 180px;
+    gap:10px;
+    padding:13px 15px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:11px 11px 0 0;
+    font-weight:800;
+    font-size:13px;
+}
+
+#productsContainer{
+    border:1px solid var(--border);
+    border-top:none;
+    border-radius:0 0 11px 11px;
+    overflow:hidden;
+}
+
+.product-row{
+    display:grid;
+    grid-template-columns:minmax(180px,1fr) 150px 180px;
+    gap:10px;
+    align-items:center;
+    padding:14px 15px;
+    border-bottom:1px solid var(--border);
+    background:white;
+}
+
+.product-row:last-child{
+    border-bottom:none;
+}
+
+.product-row:hover{
+    background:#fafcff;
+}
+
+.product-name{
+    font-weight:700;
+}
+
+.product-price{
+    font-weight:700;
+}
+
+.quantity-control{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    gap:7px;
+}
+
+.qty-btn{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:9px;
+    background:var(--dark);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.qty-btn:hover{
+    background:var(--primary);
+}
+
+.qty-input{
+    width:55px;
+    height:35px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    text-align:center;
+    font-size:15px;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary{
+    margin-top:18px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:17px;
+}
+
+.summary-line{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+}
+
+.grand-total{
+    margin-top:8px;
+    padding-top:13px;
+    border-top:1px solid var(--border);
+    font-size:21px;
+    font-weight:800;
+}
+
+/* ================= BUTTON ================= */
+
+.submit-btn{
+    width:100%;
+    border:none;
+    background:var(--success);
+    color:white;
+    padding:16px;
+    border-radius:12px;
+    margin-top:18px;
+    font-size:17px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.submit-btn:hover{
+    background:#15803d;
+    transform:translateY(-1px);
+}
+
+.submit-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-products{
+    text-align:center;
+    padding:45px 15px;
+    color:var(--muted);
+}
+
+/* ================= SUCCESS TOAST ================= */
+
+.success-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.45);
+    backdrop-filter:blur(5px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.success-overlay.show{
+    display:flex;
+}
+
+.success-popup{
+    width:min(420px,90%);
+    background:white;
+    border-radius:22px;
+    padding:30px 25px;
+    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+    animation:popupIn .25s ease;
+}
+
+@keyframes popupIn{
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#dcfce7;
+    color:#16a34a;
+    font-size:36px;
+    font-weight:800;
+}
+
+.success-popup h2{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.success-popup p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.countdown{
+    margin-top:15px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+/* ================= ADMIN ================= */
+
+.admin-overlay{
+    position:fixed;
+    inset:0;
+    background:#f1f5f9;
+    z-index:5000;
+    display:none;
+    overflow-y:auto;
+}
+
+.admin-overlay.show{
+    display:block;
+}
+
+.admin-header{
+    background:#111827;
+    color:white;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.admin-header h2{
+    font-size:21px;
+}
+
+.admin-close{
+    border:none;
+    background:#374151;
+    color:white;
+    padding:10px 15px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.admin-container{
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:330px 1fr;
+    gap:20px;
+}
+
+.admin-card{
+    background:white;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+}
+
+.admin-card h3{
+    margin-bottom:15px;
+}
+
+.admin-input{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+.admin-input:focus{
+    border-color:var(--primary);
+}
+
+.admin-primary,
+.admin-secondary,
+.admin-danger{
+    border:none;
+    padding:11px 14px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.admin-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.admin-primary:hover{
+    background:var(--primary-dark);
+}
+
+.admin-secondary{
+    background:#e2e8f0;
+    color:#1e293b;
+}
+
+.admin-danger{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.admin-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.admin-product-list{
+    max-height:650px;
+    overflow-y:auto;
+}
+
+.admin-product{
+    display:grid;
+    grid-template-columns:1fr 120px 160px;
+    gap:10px;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.admin-product:last-child{
+    border-bottom:none;
+}
+
+.admin-product-name{
+    font-weight:700;
+}
+
+.admin-product-price{
+    font-weight:700;
+}
+
+.admin-search{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+/* ================= ADMIN LOGIN ================= */
+
+.login-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.65);
+    backdrop-filter:blur(5px);
+    z-index:7000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-overlay.show{
+    display:flex;
+}
+
+.login-box{
+    width:min(400px,100%);
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+}
+
+.login-box h2{
+    margin-bottom:8px;
+}
+
+.login-box p{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.login-input{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+.login-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.login-buttons button{
+    flex:1;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    padding:25px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:750px){
+
+    .shop-name{
+        font-size:24px;
+    }
+
+    .customer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product-header{
+        grid-template-columns:1fr 85px 125px;
+        font-size:11px;
+    }
+
+    .product-row{
+        grid-template-columns:1fr 85px 125px;
+        font-size:12px;
+    }
+
+    .product-price{
+        font-size:12px;
+    }
+
+    .quantity-control{
+        gap:4px;
+    }
+
+    .qty-btn{
+        width:29px;
+        height:30px;
+        font-size:17px;
+    }
+
+    .qty-input{
+        width:40px;
+        height:30px;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .admin-product{
+        grid-template-columns:1fr 90px;
+    }
+
+    .admin-product .admin-actions{
+        grid-column:1 / -1;
+    }
+
+    .product-tools{
+        flex-direction:column;
+    }
+}
+
+@media(max-width:450px){
+
+    .card{
+        padding:15px;
+    }
+
+    .product-header{
+        grid-template-columns:1fr 70px 110px;
+        padding:10px 8px;
+    }
+
+    .product-row{
+        grid-template-columns:1fr 70px 110px;
+        padding:12px 8px;
+    }
+
+    .product-name{
+        font-size:12px;
+    }
+
+    .product-price{
+        font-size:11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= CUSTOMER HEADER ================= -->
+
+<header class="header">
+
+    <div
+        class="shop-name"
+        id="shopName"
+    >
+        My Shop
+    </div>
+
+    <div class="shop-subtitle">
+        Online Order Form
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- CUSTOMER INFORMATION -->
+
+    <section class="card">
+
+        <div class="section-title">
+            Customer Information
+        </div>
+
+        <div class="customer-grid">
+
+            <div class="input-group">
+
+                <label>
+                    Customer Name
+                </label>
+
+                <input
+                    id="customerName"
+                    type="text"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    WhatsApp / Phone
+                </label>
+
+                <input
+                    id="customerPhone"
+                    type="tel"
+                    placeholder="03XXXXXXXXX"
+                >
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="input-group">
+
+            <label>
+                Address / Delivery Details
+            </label>
+
+            <textarea
+                id="customerAddress"
+                placeholder="Enter your delivery address"
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="card">
+
+        <div class="section-title">
+            Select Products
+        </div>
+
+
+        <div class="product-tools">
+
+            <input
+                id="productSearch"
+                class="search-box"
+                type="search"
+                placeholder="🔎 Search product..."
+                oninput="renderProducts()"
+            >
+
+        </div>
+
+
+        <div class="product-header">
+
+            <div>
+                Product
+            </div>
+
+            <div>
+                Unit Price
+            </div>
+
+            <div>
+                Quantity
+            </div>
+
+        </div>
+
+
+        <div id="productsContainer"></div>
+
+
+        <div class="summary">
+
+            <div class="summary-line">
+
+                <span>
+                    Total Products
+                </span>
+
+                <strong id="totalProducts">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-line grand-total">
+
+                <span>
+                    Grand Total
+                </span>
+
+                <strong id="grandTotal">
+                    PKR 0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="submitButton"
+            class="submit-btn"
+            onclick="submitOrder()"
+        >
+            🛒 Submit Order
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    © <span id="footerYear"></span>
+
+    <span id="footerShopName">
+        My Shop
+    </span>
+
+    — All Rights Reserved
+
+</footer>
+
+
+<!-- ================= SUCCESS POPUP ================= -->
+
+<div
+    class="success-overlay"
+    id="successOverlay"
+>
+
+    <div class="success-popup">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Your order has been submitted
+        </h2>
+
+        <p>
+            Thank you! Your order has been successfully submitted.
+        </p>
+
+        <div class="countdown">
+
+            Closing in
+            <strong id="countdownNumber">2</strong>
+            seconds...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ADMIN LOGIN ================= -->
+
+<div
+    class="login-overlay"
+    id="loginOverlay"
+>
+
+    <div class="login-box">
+
+        <h2>
+            🔐 Admin Login
+        </h2>
+
+        <p>
+            Admin access is required.
+        </p>
+
+        <input
+            id="adminPassword"
+            class="login-input"
+            type="password"
+            placeholder="Enter admin password"
+            onkeydown="if(event.key==='Enter') adminLogin()"
+        >
+
+        <div class="login-buttons">
+
+            <button
+                class="admin-primary"
+                onclick="adminLogin()"
+            >
+                Login
+            </button>
+
+            <button
+                class="admin-secondary"
+                onclick="closeAdminLogin()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ADMIN PANEL ================= -->
+
+<div
+    class="admin-overlay"
+    id="adminOverlay"
+>
+
+    <div class="admin-header">
+
+        <h2>
+            ⚙️ Admin Panel
+        </h2>
+
+        <button
+            class="admin-close"
+            onclick="closeAdminPanel()"
+        >
+            Close
+        </button>
+
+    </div>
+
+
+    <div class="admin-container">
+
+        <div class="admin-grid">
+
+            <!-- ADMIN SETTINGS -->
+
+            <div class="admin-card">
+
+                <h3>
+                    Shop Settings
+                </h3>
+
+                <input
+                    id="adminShopName"
+                    class="admin-input"
+                    type="text"
+                    placeholder="Shop name"
+                >
+
+                <button
+                    class="admin-primary"
+                    onclick="saveShopName()"
+                >
+                    Save Shop Name
+                </button>
+
+                <hr style="margin:20px 0;border:0;border-top:1px solid #e2e8f0;">
+
+                <h3>
+                    Add Product
+                </h3>
+
+                <input
+                    id="newProductName"
+                    class="admin-input"
+                    type="text"
+                    placeholder="Product name"
+                >
+
+                <input
+                    id="newProductPrice"
+                    class="admin-input"
+                    type="number"
+                    min="0"
+                    placeholder="Unit price"
+                >
+
+                <button
+                    class="admin-primary"
+                    onclick="addProduct()"
+                >
+                    + Add Product
+                </button>
+
+                <p style="margin-top:15px;color:#64748b;font-size:12px;">
+                    You can add as many products as you need.
+                </p>
+
+            </div>
+
+
+            <!-- PRODUCT MANAGEMENT -->
+
+            <div class="admin-card">
+
+                <h3>
+                    Product Management
+                </h3>
+
+                <input
+                    id="adminProductSearch"
+                    class="admin-search"
+                    type="search"
+                    placeholder="🔎 Search products..."
+                    oninput="renderAdminProducts()"
+                >
+
+                <div
+                    id="adminProductList"
+                    class="admin-product-list"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+/*
+   IMPORTANT:
+   This password is only for this standalone demo.
+
+   For a real production website, do NOT keep an admin
+   password inside frontend JavaScript.
+
+   Use Firebase/Supabase/server authentication instead.
+*/
+
+const ADMIN_PASSWORD = "Admin@12345";
+
+
+/* =========================================================
+   DEFAULT PRODUCTS
+========================================================= */
+
+const defaultProducts = [
+
+    {
+        id: 1,
+        name: "Product 1",
+        price: 500
+    },
+
+    {
+        id: 2,
+        name: "Product 2",
+        price: 250
+    },
+
+    {
+        id: 3,
+        name: "Product 3",
+        price: 1200
+    },
+
+    {
+        id: 4,
+        name: "Product 4",
+        price: 150
+    }
+
+];
+
+
+/* =========================================================
+   DATABASE HELPERS
+========================================================= */
+
+function getProducts(){
+
+    const saved =
+        localStorage.getItem("shopProducts");
+
+    if(!saved){
+
+        localStorage.setItem(
+            "shopProducts",
+            JSON.stringify(defaultProducts)
+        );
+
+        return [...defaultProducts];
+    }
+
+    try{
+
+        return JSON.parse(saved);
+
+    }catch(error){
+
+        localStorage.setItem(
+            "shopProducts",
+            JSON.stringify(defaultProducts)
+        );
+
+        return [...defaultProducts];
+    }
+
+}
+
+
+function saveProducts(products){
+
+    localStorage.setItem(
+        "shopProducts",
+        JSON.stringify(products)
+    );
+
+}
+
+
+/* =========================================================
+   SHOP NAME
+========================================================= */
+
+function getShopName(){
+
+    return localStorage.getItem("shopName")
+        || "My Shop";
+
+}
+
+
+function applyShopName(){
+
+    const name =
+        getShopName();
+
+    document.getElementById("shopName")
+        .textContent = name;
+
+    document.getElementById("footerShopName")
+        .textContent = name;
+
+    document.title =
+        name + " - Order Form";
+
+}
+
+
+/* =========================================================
+   CUSTOMER PRODUCTS
+========================================================= */
+
+const quantities = {};
+
+
+function renderProducts(){
+
+    const products =
+        getProducts();
+
+    const container =
+        document.getElementById("productsContainer");
+
+    const search =
+        document.getElementById("productSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        products.filter(product =>
+            product.name
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    if(filtered.length === 0){
+
+        container.innerHTML = `
+            <div class="empty-products">
+                No products found.
+            </div>
+        `;
+
+        updateTotal();
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    filtered.forEach(product => {
+
+        const quantity =
+            quantities[product.id] || 0;
+
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "product-row";
+
+
+        row.innerHTML = `
+
+            <div class="product-name">
+                ${escapeHTML(product.name)}
+            </div>
+
+            <div class="product-price">
+                PKR ${Number(product.price).toLocaleString()}
+            </div>
+
+            <div class="quantity-control">
+
+                <button
+                    class="qty-btn"
+                    onclick="changeQuantity(${product.id},-1)"
+                >
+                    −
+                </button>
+
+                <input
+                    id="qty-${product.id}"
+                    class="qty-input"
+                    type="number"
+                    min="0"
+                    value="${quantity}"
+                    onchange="setQuantity(${product.id},this.value)"
+                >
+
+                <button
+                    class="qty-btn"
+                    onclick="changeQuantity(${product.id},1)"
+                >
+                    +
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(row);
+
+    });
+
+
+    updateTotal();
+
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+function setQuantity(id,value){
+
+    let quantity =
+        parseInt(value) || 0;
+
+
+    if(quantity < 0){
+        quantity = 0;
+    }
+
+
+    quantities[id] =
+        quantity;
+
+
+    updateTotal();
+
+}
+
+
+function changeQuantity(id,amount){
+
+    let quantity =
+        quantities[id] || 0;
+
+
+    quantity += amount;
+
+
+    if(quantity < 0){
+        quantity = 0;
+    }
+
+
+    quantities[id] =
+        quantity;
+
+
+    const input =
+        document.getElementById("qty-" + id);
+
+
+    if(input){
+        input.value = quantity;
+    }
+
+
+    updateTotal();
+
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+function updateTotal(){
+
+    const products =
+        getProducts();
+
+    let total = 0;
+
+    let totalProducts = 0;
+
+
+    products.forEach(product => {
+
+        const quantity =
+            quantities[product.id] || 0;
+
+
+        totalProducts +=
+            quantity;
+
+
+        total +=
+            Number(product.price) * quantity;
+
+    });
+
+
+    document.getElementById("totalProducts")
+        .textContent =
+        totalProducts;
+
+
+    document.getElementById("grandTotal")
+        .textContent =
+        "PKR " + total.toLocaleString();
+
+}
+
+
+/* =========================================================
+   SUBMIT ORDER
+========================================================= */
+
+function submitOrder(){
+
+    const customerName =
+        document.getElementById("customerName")
+            .value
+            .trim();
+
+
+    const customerPhone =
+        document.getElementById("customerPhone")
+            .value
+            .trim();
+
+
+    const customerAddress =
+        document.getElementById("customerAddress")
+            .value
+            .trim();
+
+
+    if(!customerName){
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+
+    if(!customerPhone){
+
+        alert("Please enter your WhatsApp / phone number.");
+
+        return;
+
+    }
+
+
+    const products =
+        getProducts();
+
+
+    const items = [];
+
+    let grandTotal = 0;
+
+
+    products.forEach(product => {
+
+        const quantity =
+            quantities[product.id] || 0;
+
+
+        if(quantity > 0){
+
+            const itemTotal =
+                Number(product.price) * quantity;
+
+
+            items.push({
+
+                productId:
+                    product.id,
+
+                product:
+                    product.name,
+
+                unitPrice:
+                    Number(product.price),
+
+                quantity:
+                    quantity,
+
+                total:
+                    itemTotal
+
+            });
+
+
+            grandTotal +=
+                itemTotal;
+
+        }
+
+    });
+
+
+    if(items.length === 0){
+
+        alert("Please select at least one product.");
+
+        return;
+
+    }
+
+
+    const order = {
+
+        orderId:
+            "ORD-" + Date.now(),
+
+        customerName:
+            customerName,
+
+        customerPhone:
+            customerPhone,
+
+        customerAddress:
+            customerAddress,
+
+        items:
+            items,
+
+        grandTotal:
+            grandTotal,
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    /*
+       Save order locally.
+       For real online orders, connect this function
+       to Firebase/Supabase/backend.
+    */
+
+    const oldOrders =
+        JSON.parse(
+            localStorage.getItem("shopOrders") || "[]"
+        );
+
+
+    oldOrders.push(order);
+
+
+    localStorage.setItem(
+        "shopOrders",
+        JSON.stringify(oldOrders)
+    );
+
+
+    /* Disable button */
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    submitButton.disabled = true;
+
+
+    /* Show success popup */
+
+    showSuccessPopup();
+
+
+    /* Reset quantities */
+
+    Object.keys(quantities).forEach(key => {
+
+        quantities[key] = 0;
+
+    });
+
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   SUCCESS POPUP
+========================================================= */
+
+function showSuccessPopup(){
+
+    const overlay =
+        document.getElementById("successOverlay");
+
+
+    const countdown =
+        document.getElementById("countdownNumber");
+
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    let seconds = 2;
+
+
+    countdown.textContent =
+        seconds;
+
+
+    overlay.classList.add("show");
+
+
+    const timer =
+        setInterval(() => {
+
+            seconds--;
+
+            countdown.textContent =
+                seconds;
+
+
+            if(seconds <= 0){
+
+                clearInterval(timer);
+
+                overlay.classList.remove("show");
+
+                submitButton.disabled = false;
+
+            }
+
+        },1000);
+
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+function openAdminLogin(){
+
+    document.getElementById("loginOverlay")
+        .classList.add("show");
+
+
+    document.getElementById("adminPassword")
+        .focus();
+
+}
+
+
+function closeAdminLogin(){
+
+    document.getElementById("loginOverlay")
+        .classList.remove("show");
+
+
+    document.getElementById("adminPassword")
+        .value = "";
+
+}
+
+
+function adminLogin(){
+
+    const password =
+        document.getElementById("adminPassword")
+            .value;
+
+
+    if(password !== ADMIN_PASSWORD){
+
+        alert("Incorrect admin password.");
+
+        return;
+
+    }
+
+
+    closeAdminLogin();
+
+    openAdminPanel();
+
+}
+
+
+function openAdminPanel(){
+
+    document.getElementById("adminOverlay")
+        .classList.add("show");
+
+
+    document.getElementById("adminShopName")
+        .value =
+        getShopName();
+
+
+    renderAdminProducts();
+
+}
+
+
+function closeAdminPanel(){
+
+    document.getElementById("adminOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   ADMIN SHOP NAME
+========================================================= */
+
+function saveShopName(){
+
+    const input =
+        document.getElementById("adminShopName");
+
+
+    const name =
+        input.value.trim();
+
+
+    if(!name){
+
+        alert("Please enter a shop name.");
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "shopName",
+        name
+    );
+
+
+    applyShopName();
+
+
+    alert("Shop name saved successfully.");
+
+}
+
+
+/* =========================================================
+   ADD PRODUCT
+========================================================= */
+
+function addProduct(){
+
+    const nameInput =
+        document.getElementById("newProductName");
+
+
+    const priceInput =
+        document.getElementById("newProductPrice");
+
+
+    const name =
+        nameInput.value.trim();
+
+
+    const price =
+        Number(priceInput.value);
+
+
+    if(!name){
+
+        alert("Please enter product name.");
+
+        return;
+
+    }
+
+
+    if(!Number.isFinite(price) || price < 0){
+
+        alert("Please enter a valid price.");
+
+        return;
+
+    }
+
+
+    const products =
+        getProducts();
+
+
+    const newProduct = {
+
+        id:
+            Date.now(),
+
+        name:
+            name,
+
+        price:
+            price
+
+    };
+
+
+    products.push(newProduct);
+
+
+    saveProducts(products);
+
+
+    nameInput.value = "";
+
+    priceInput.value = "";
+
+
+    renderAdminProducts();
+
+    renderProducts();
+
+
+    alert("Product added successfully.");
+
+}
+
+
+/* =========================================================
+   ADMIN PRODUCT LIST
+========================================================= */
+
+function renderAdminProducts(){
+
+    const products =
+        getProducts();
+
+
+    const container =
+        document.getElementById("adminProductList");
+
+
+    const search =
+        document.getElementById("adminProductSearch")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const filtered =
+        products.filter(product =>
+            product.name
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    if(filtered.length === 0){
+
+        container.innerHTML = `
+            <div class="empty-products">
+                No products found.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    filtered.forEach(product => {
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "admin-product";
+
+
+        item.innerHTML = `
+
+            <div class="admin-product-name">
+                ${escapeHTML(product.name)}
+            </div>
+
+            <div class="admin-product-price">
+                PKR ${Number(product.price).toLocaleString()}
+            </div>
+
+            <div class="admin-actions">
+
+                <button
+                    class="admin-secondary"
+                    onclick="editProduct(${product.id})"
+                >
+                    Edit
+                </button>
+
+                <button
+                    class="admin-danger"
+                    onclick="deleteProduct(${product.id})"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+function editProduct(id){
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products.find(item =>
+            item.id === id
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const newName =
+        prompt(
+            "Enter product name:",
+            product.name
+        );
+
+
+    if(newName === null){
+
+        return;
+
+    }
+
+
+    const cleanName =
+        newName.trim();
+
+
+    if(!cleanName){
+
+        alert("Product name cannot be empty.");
+
+        return;
+
+    }
+
+
+    const newPrice =
+        prompt(
+            "Enter unit price:",
+            product.price
+        );
+
+
+    if(newPrice === null){
+
+        return;
+
+    }
+
+
+    const price =
+        Number(newPrice);
+
+
+    if(!Number.isFinite(price) || price < 0){
+
+        alert("Invalid price.");
+
+        return;
+
+    }
+
+
+    product.name =
+        cleanName;
+
+
+    product.price =
+        price;
+
+
+    saveProducts(products);
+
+
+    renderAdminProducts();
+
+    renderProducts();
+
+
+    alert("Product updated successfully.");
+
+}
+
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+function deleteProduct(id){
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products.find(item =>
+            item.id === id
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            'Delete "' +
+            product.name +
+            '"?'
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const updated =
+        products.filter(item =>
+            item.id !== id
+        );
+
+
+    saveProducts(updated);
+
+
+    delete quantities[id];
+
+
+    renderAdminProducts();
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   HIDDEN ADMIN ACCESS
+========================================================= */
+
+/*
+   Customer ko Settings button nahi dikhaya gaya.
+
+   Admin panel open karne ke liye URL ke end mein:
+
+   ?admin=1
+
+   Example:
+
+   yourshop.vercel.app/?admin=1
+
+   Isse login popup open hoga.
+*/
+
+function checkAdminURL(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    if(params.get("admin") === "1"){
+
+        setTimeout(() => {
+
+            openAdminLogin();
+
+        },300);
+
+    }
+
+}
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document.getElementById("footerYear")
+    .textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   START WEBSITE
+========================================================= */
+
+applyShopName();
+
+renderProducts();
+
+checkAdminURL();
+
+</script>
+
+</body>
+</html>
