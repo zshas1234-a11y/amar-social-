@@ -2,533 +2,497 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>My Shop - Online Order</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My Shop - Order Form</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-    --primary:#2563eb;
-    --primary2:#1d4ed8;
-    --dark:#111827;
-    --bg:#f3f6fa;
-    --card:#fff;
-    --border:#e5e7eb;
-    --green:#16a34a;
-    --red:#dc2626;
-    --text:#1f2937;
-    --muted:#64748b;
+--primary:#2563eb;
+--dark:#111827;
+--green:#16a34a;
+--red:#dc2626;
+--bg:#f1f5f9;
+--border:#e2e8f0;
+--muted:#64748b;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:#1f2937;
 }
 
 .header{
-    background:linear-gradient(135deg,#111827,#1e293b);
-    color:white;
-    text-align:center;
-    padding:27px 15px;
+background:linear-gradient(135deg,#111827,#1e293b);
+color:white;
+text-align:center;
+padding:28px 15px;
 }
 
 .shop-name{
-    font-size:30px;
-    font-weight:800;
+font-size:30px;
+font-weight:800;
 }
 
 .shop-subtitle{
-    margin-top:7px;
-    color:#cbd5e1;
-    font-size:14px;
+margin-top:6px;
+color:#cbd5e1;
+font-size:14px;
 }
 
 .container{
-    width:min(1100px,calc(100% - 30px));
-    margin:25px auto;
+max-width:1100px;
+margin:25px auto;
+padding:0 15px;
 }
 
 .card{
-    background:white;
-    border-radius:18px;
-    padding:22px;
-    margin-bottom:20px;
-    box-shadow:0 10px 35px rgba(0,0,0,.07);
+background:white;
+border-radius:18px;
+padding:22px;
+margin-bottom:20px;
+box-shadow:0 10px 35px rgba(0,0,0,.07);
 }
 
 .title{
-    font-size:20px;
-    font-weight:800;
-    margin-bottom:18px;
+font-size:20px;
+font-weight:800;
+margin-bottom:18px;
 }
 
 .customer-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
 }
 
 .input-group{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+display:flex;
+flex-direction:column;
+gap:7px;
 }
 
 .input-group label{
-    font-size:13px;
-    font-weight:700;
+font-size:13px;
+font-weight:700;
 }
 
 input,textarea{
-    width:100%;
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:13px;
-    outline:none;
-    font-size:14px;
-}
-
-input:focus,textarea:focus{
-    border-color:var(--primary);
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:10px;
+outline:none;
+font-size:14px;
 }
 
 textarea{
-    min-height:90px;
-    resize:vertical;
+min-height:90px;
+resize:vertical;
+}
+
+input:focus,textarea:focus{
+border-color:var(--primary);
 }
 
 .search{
-    margin-bottom:15px;
+margin-bottom:15px;
 }
 
 .product-header,
 .product-row{
-    display:grid;
-    grid-template-columns:1fr 150px 180px;
-    gap:10px;
-    align-items:center;
+display:grid;
+grid-template-columns:1fr 150px 180px;
+gap:10px;
+align-items:center;
 }
 
 .product-header{
-    padding:13px 15px;
-    background:#f8fafc;
-    border:1px solid var(--border);
-    border-radius:11px 11px 0 0;
-    font-size:13px;
-    font-weight:800;
+padding:13px 15px;
+background:#f8fafc;
+border:1px solid var(--border);
+border-radius:11px 11px 0 0;
+font-weight:800;
+font-size:13px;
 }
 
 .products{
-    border:1px solid var(--border);
-    border-top:0;
-    border-radius:0 0 11px 11px;
-    overflow:hidden;
+border:1px solid var(--border);
+border-top:0;
+border-radius:0 0 11px 11px;
+overflow:hidden;
 }
 
 .product-row{
-    padding:14px 15px;
-    border-bottom:1px solid var(--border);
+padding:14px 15px;
+border-bottom:1px solid var(--border);
 }
 
 .product-row:last-child{
-    border-bottom:0;
+border-bottom:0;
 }
 
 .product-name{
-    font-weight:700;
+font-weight:700;
 }
 
 .product-price{
-    font-weight:700;
+font-weight:700;
 }
 
 .quantity{
-    display:flex;
-    align-items:center;
-    gap:7px;
-}
-
-.qty{
-    width:52px;
-    height:36px;
-    text-align:center;
-    padding:5px;
+display:flex;
+align-items:center;
+gap:6px;
 }
 
 .qty-btn{
-    width:36px;
-    height:36px;
-    border:0;
-    border-radius:8px;
-    background:var(--dark);
-    color:white;
-    font-size:20px;
-    cursor:pointer;
+width:36px;
+height:36px;
+border:0;
+border-radius:8px;
+background:var(--dark);
+color:white;
+font-size:20px;
+cursor:pointer;
 }
 
 .qty-btn:hover{
-    background:var(--primary);
+background:var(--primary);
+}
+
+.qty{
+width:52px;
+height:36px;
+padding:5px;
+text-align:center;
 }
 
 .summary{
-    margin-top:18px;
-    padding:18px;
-    background:#f8fafc;
-    border:1px solid var(--border);
-    border-radius:13px;
+margin-top:18px;
+padding:18px;
+background:#f8fafc;
+border:1px solid var(--border);
+border-radius:13px;
 }
 
 .summary-line{
-    display:flex;
-    justify-content:space-between;
-    padding:6px 0;
+display:flex;
+justify-content:space-between;
+padding:6px 0;
 }
 
 .total{
-    margin-top:8px;
-    padding-top:13px;
-    border-top:1px solid var(--border);
-    font-size:22px;
-    font-weight:800;
+border-top:1px solid var(--border);
+margin-top:8px;
+padding-top:13px;
+font-size:22px;
+font-weight:800;
 }
 
 .submit{
-    width:100%;
-    margin-top:18px;
-    padding:16px;
-    border:0;
-    border-radius:12px;
-    background:var(--green);
-    color:white;
-    font-size:17px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.submit:hover{
-    background:#15803d;
+width:100%;
+margin-top:18px;
+padding:16px;
+border:0;
+border-radius:12px;
+background:var(--green);
+color:white;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
 }
 
 .submit:disabled{
-    opacity:.6;
-}
-
-.empty{
-    text-align:center;
-    padding:40px;
-    color:var(--muted);
+opacity:.6;
 }
 
 /* SUCCESS */
 
 .success{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5);
-    backdrop-filter:blur(5px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
+display:none;
+position:fixed;
+inset:0;
+z-index:9999;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(5px);
+align-items:center;
+justify-content:center;
 }
 
 .success.show{
-    display:flex;
+display:flex;
 }
 
 .success-box{
-    width:min(420px,90%);
-    background:white;
-    border-radius:22px;
-    padding:30px 25px;
-    text-align:center;
-    box-shadow:0 25px 70px rgba(0,0,0,.3);
-    animation:pop .25s ease;
-}
-
-@keyframes pop{
-    from{
-        transform:scale(.8);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
+width:min(420px,90%);
+background:white;
+border-radius:22px;
+padding:30px;
+text-align:center;
+box-shadow:0 25px 70px rgba(0,0,0,.3);
 }
 
 .success-icon{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#dcfce7;
-    color:#16a34a;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
-    font-weight:bold;
+width:70px;
+height:70px;
+margin:auto;
+border-radius:50%;
+background:#dcfce7;
+color:#16a34a;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+font-weight:bold;
 }
 
 .success-box h2{
-    margin-top:15px;
-    font-size:22px;
+margin-top:15px;
+font-size:22px;
 }
 
 .success-box p{
-    margin-top:8px;
-    color:var(--muted);
+margin-top:8px;
+color:var(--muted);
 }
 
 .countdown{
-    margin-top:15px;
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* ADMIN */
-
-.admin{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#f3f6fa;
-    z-index:5000;
-    overflow-y:auto;
-}
-
-.admin.show{
-    display:block;
-}
-
-.admin-header{
-    background:#111827;
-    color:white;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.admin-header button{
-    border:0;
-    background:#374151;
-    color:white;
-    padding:10px 15px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.admin-container{
-    width:min(1150px,calc(100% - 30px));
-    margin:25px auto;
-}
-
-.admin-grid{
-    display:grid;
-    grid-template-columns:330px 1fr;
-    gap:20px;
-}
-
-.admin-card{
-    background:white;
-    border-radius:16px;
-    padding:20px;
-    box-shadow:0 10px 35px rgba(0,0,0,.07);
-}
-
-.admin-card h3{
-    margin-bottom:15px;
-}
-
-.admin-input{
-    margin-bottom:12px;
-}
-
-.admin-btn{
-    border:0;
-    padding:11px 15px;
-    border-radius:9px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.blue{
-    background:var(--primary);
-    color:white;
-}
-
-.gray{
-    background:#e5e7eb;
-}
-
-.red{
-    background:#fee2e2;
-    color:#b91c1c;
-}
-
-.admin-list{
-    max-height:650px;
-    overflow:auto;
-}
-
-.admin-product{
-    display:grid;
-    grid-template-columns:1fr 120px 150px;
-    gap:10px;
-    align-items:center;
-    padding:13px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.admin-actions{
-    display:flex;
-    gap:6px;
+margin-top:15px;
+color:var(--muted);
+font-size:13px;
 }
 
 /* LOGIN */
 
 .login{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.65);
-    backdrop-filter:blur(5px);
-    z-index:8000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+display:none;
+position:fixed;
+inset:0;
+z-index:8000;
+background:rgba(0,0,0,.65);
+align-items:center;
+justify-content:center;
+padding:20px;
 }
 
 .login.show{
-    display:flex;
+display:flex;
 }
 
 .login-box{
-    width:min(400px,100%);
-    background:white;
-    padding:25px;
-    border-radius:20px;
+width:min(390px,100%);
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 25px 70px rgba(0,0,0,.3);
 }
 
 .login-box h2{
-    margin-bottom:8px;
+margin-bottom:8px;
 }
 
 .login-box p{
-    color:var(--muted);
-    font-size:13px;
-    margin-bottom:18px;
+font-size:13px;
+color:var(--muted);
+margin-bottom:18px;
 }
 
 .login-buttons{
-    display:flex;
-    gap:8px;
+display:flex;
+gap:8px;
 }
 
 .login-buttons button{
-    flex:1;
+flex:1;
 }
 
-/* ORDERS */
+/* ADMIN */
+
+.admin{
+display:none;
+position:fixed;
+inset:0;
+z-index:5000;
+background:var(--bg);
+overflow-y:auto;
+}
+
+.admin.show{
+display:block;
+}
+
+.admin-header{
+background:#111827;
+color:white;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.admin-header button{
+border:0;
+padding:10px 14px;
+border-radius:8px;
+cursor:pointer;
+background:#374151;
+color:white;
+}
+
+.admin-container{
+max-width:1150px;
+margin:25px auto;
+padding:0 15px;
+}
+
+.admin-grid{
+display:grid;
+grid-template-columns:330px 1fr;
+gap:20px;
+}
+
+.admin-card{
+background:white;
+border-radius:16px;
+padding:20px;
+box-shadow:0 10px 35px rgba(0,0,0,.07);
+}
+
+.admin-card h3{
+margin-bottom:15px;
+}
+
+.admin-input,
+.admin-search{
+margin-bottom:12px;
+}
+
+.admin-btn{
+border:0;
+padding:11px 15px;
+border-radius:9px;
+font-weight:700;
+cursor:pointer;
+}
+
+.blue{
+background:var(--primary);
+color:white;
+}
+
+.gray{
+background:#e5e7eb;
+}
+
+.red{
+background:#fee2e2;
+color:#b91c1c;
+}
+
+.admin-list{
+max-height:650px;
+overflow-y:auto;
+}
+
+.admin-product{
+display:grid;
+grid-template-columns:1fr 120px 150px;
+gap:10px;
+align-items:center;
+padding:13px 0;
+border-bottom:1px solid var(--border);
+}
+
+.admin-actions{
+display:flex;
+gap:6px;
+}
 
 .orders{
-    margin-top:20px;
+margin-top:20px;
 }
 
 .order-card{
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:12px;
+border:1px solid var(--border);
+border-radius:12px;
+padding:15px;
+margin-top:12px;
 }
 
 .order-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    font-weight:bold;
+display:flex;
+justify-content:space-between;
+font-weight:700;
 }
 
 .order-items{
-    margin-top:10px;
-    color:#475569;
-    font-size:14px;
+margin-top:10px;
+font-size:14px;
+line-height:1.7;
+color:#475569;
 }
 
 .order-total{
-    margin-top:10px;
-    font-weight:800;
+margin-top:10px;
+font-weight:800;
 }
 
-/* FOOTER */
+.empty{
+text-align:center;
+padding:40px;
+color:var(--muted);
+}
 
 .footer{
-    text-align:center;
-    padding:25px;
-    color:var(--muted);
-    font-size:13px;
+text-align:center;
+padding:25px;
+color:var(--muted);
+font-size:13px;
 }
 
 @media(max-width:750px){
 
-    .customer-grid{
-        grid-template-columns:1fr;
-    }
-
-    .product-header,
-    .product-row{
-        grid-template-columns:1fr 80px 125px;
-        font-size:12px;
-    }
-
-    .qty-btn{
-        width:29px;
-        height:30px;
-        font-size:17px;
-    }
-
-    .qty{
-        width:40px;
-        height:30px;
-    }
-
-    .admin-grid{
-        grid-template-columns:1fr;
-    }
-
-    .admin-product{
-        grid-template-columns:1fr 90px;
-    }
-
-    .admin-actions{
-        grid-column:1/-1;
-    }
+.customer-grid{
+grid-template-columns:1fr;
 }
 
-@media(max-width:450px){
+.product-header,
+.product-row{
+grid-template-columns:1fr 80px 125px;
+font-size:12px;
+}
 
-    .card{
-        padding:15px;
-    }
+.qty-btn{
+width:29px;
+height:30px;
+font-size:17px;
+}
 
-    .product-header,
-    .product-row{
-        grid-template-columns:1fr 65px 110px;
-        padding:11px 8px;
-    }
+.qty{
+width:40px;
+height:30px;
+}
 
-    .shop-name{
-        font-size:24px;
-    }
+.admin-grid{
+grid-template-columns:1fr;
+}
+
+.admin-product{
+grid-template-columns:1fr 90px;
+}
+
+.admin-actions{
+grid-column:1/-1;
+}
+
+.shop-name{
+font-size:24px;
+}
+
 }
 </style>
 </head>
@@ -539,157 +503,144 @@ textarea{
 
 <header class="header">
 
-    <div
-        class="shop-name"
-        id="shopName"
-    >
-        My Shop
-    </div>
+<div class="shop-name" id="shopName">
+My Shop
+</div>
 
-    <div class="shop-subtitle">
-        Online Order Form
-    </div>
+<div class="shop-subtitle">
+Online Order Form
+</div>
 
 </header>
 
 
 <main class="container">
 
-    <!-- CUSTOMER -->
+<!-- CUSTOMER INFORMATION -->
 
-    <section class="card">
+<section class="card">
 
-        <div class="title">
-            Customer Information
-        </div>
+<div class="title">
+Customer Information
+</div>
 
-        <div class="customer-grid">
+<div class="customer-grid">
 
-            <div class="input-group">
+<div class="input-group">
 
-                <label>Customer Name</label>
+<label>Customer Name</label>
 
-                <input
-                    id="customerName"
-                    placeholder="Enter your name"
-                >
+<input
+id="customerName"
+placeholder="Enter your name"
+>
 
-            </div>
-
-
-            <div class="input-group">
-
-                <label>WhatsApp / Phone</label>
-
-                <input
-                    id="customerPhone"
-                    type="tel"
-                    placeholder="03XXXXXXXXX"
-                >
-
-            </div>
-
-        </div>
-
-        <br>
-
-        <div class="input-group">
-
-            <label>
-                Address / Delivery Details
-            </label>
-
-            <textarea
-                id="customerAddress"
-                placeholder="Enter your address"
-            ></textarea>
-
-        </div>
-
-    </section>
+</div>
 
 
-    <!-- PRODUCTS -->
+<div class="input-group">
 
-    <section class="card">
+<label>WhatsApp / Phone</label>
 
-        <div class="title">
-            Select Products
-        </div>
+<input
+id="customerPhone"
+type="tel"
+placeholder="03XXXXXXXXX"
+>
 
-        <input
-            id="search"
-            class="search"
-            placeholder="🔎 Search product..."
-            oninput="renderProducts()"
-        >
+</div>
 
+</div>
 
-        <div class="product-header">
+<br>
 
-            <div>Product</div>
+<div class="input-group">
 
-            <div>Unit Price</div>
+<label>Address / Delivery Details</label>
 
-            <div>Quantity</div>
+<textarea
+id="customerAddress"
+placeholder="Enter your delivery address"
+></textarea>
 
-        </div>
+</div>
 
-
-        <div
-            id="products"
-            class="products"
-        ></div>
+</section>
 
 
-        <div class="summary">
+<!-- PRODUCTS -->
 
-            <div class="summary-line">
+<section class="card">
 
-                <span>
-                    Total Products
-                </span>
+<div class="title">
+Select Products
+</div>
 
-                <strong id="totalItems">
-                    0
-                </strong>
+<input
+id="search"
+class="search"
+placeholder="🔎 Search product..."
+>
 
-            </div>
+<div class="product-header">
 
+<div>Product</div>
+<div>Unit Price</div>
+<div>Quantity</div>
 
-            <div class="summary-line total">
+</div>
 
-                <span>
-                    Grand Total
-                </span>
-
-                <strong id="grandTotal">
-                    PKR 0
-                </strong>
-
-            </div>
-
-        </div>
+<div
+id="products"
+class="products"
+></div>
 
 
-        <button
-            id="submitButton"
-            class="submit"
-            onclick="submitOrder()"
-        >
-            🛒 Submit Order
-        </button>
+<div class="summary">
 
-    </section>
+<div class="summary-line">
+
+<span>Total Products</span>
+
+<strong id="totalItems">0</strong>
+
+</div>
+
+
+<div class="summary-line total">
+
+<span>Grand Total</span>
+
+<strong id="grandTotal">
+PKR 0
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+id="submitButton"
+class="submit"
+>
+🛒 Submit Order
+</button>
+
+</section>
 
 </main>
 
 
 <footer class="footer">
 
-    © <span id="year"></span>
-    <span id="footerName">My Shop</span>
-    — All Rights Reserved
+© <span id="year"></span>
+
+<span id="footerName">
+My Shop
+</span>
+
+— All Rights Reserved
 
 </footer>
 
@@ -697,33 +648,33 @@ textarea{
 <!-- SUCCESS POPUP -->
 
 <div
-    id="success"
-    class="success"
+id="success"
+class="success"
 >
 
-    <div class="success-box">
+<div class="success-box">
 
-        <div class="success-icon">
-            ✓
-        </div>
+<div class="success-icon">
+✓
+</div>
 
-        <h2>
-            Your order has been submitted
-        </h2>
+<h2>
+Your order has been submitted
+</h2>
 
-        <p>
-            Thank you! Your order was successfully submitted.
-        </p>
+<p>
+Thank you! Your order was successfully submitted.
+</p>
 
-        <div class="countdown">
+<div class="countdown">
 
-            Closing in
-            <strong id="seconds">2</strong>
-            seconds...
+Closing in
+<strong id="seconds">2</strong>
+seconds...
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
@@ -731,58 +682,50 @@ textarea{
 <!-- ADMIN LOGIN -->
 
 <div
-    id="login"
-    class="login"
+id="login"
+class="login"
 >
 
-    <div class="login-box">
+<div class="login-box">
 
-        <h2>
-            🔐 Admin Login
-        </h2>
+<h2>
+🔐 Admin Login
+</h2>
 
-        <p>
-            Login with your Firebase admin account.
-        </p>
+<p>
+Enter your admin password.
+</p>
 
-        <input
-            id="adminEmail"
-            class="admin-input"
-            type="email"
-            placeholder="Admin email"
-        >
+<input
+id="adminPassword"
+type="password"
+placeholder="Admin password"
+>
 
-        <input
-            id="adminPassword"
-            class="admin-input"
-            type="password"
-            placeholder="Admin password"
-        >
+<div class="login-buttons">
 
-        <div class="login-buttons">
+<button
+id="loginButton"
+class="admin-btn blue"
+>
+Login
+</button>
 
-            <button
-                class="admin-btn blue"
-                onclick="adminLogin()"
-            >
-                Login
-            </button>
+<button
+id="cancelLogin"
+class="admin-btn gray"
+>
+Cancel
+</button>
 
-            <button
-                class="admin-btn gray"
-                onclick="closeLogin()"
-            >
-                Cancel
-            </button>
+</div>
 
-        </div>
+<p
+id="loginError"
+style="color:#dc2626;margin-top:12px"
+></p>
 
-        <p
-            id="loginError"
-            style="color:#dc2626;margin-top:12px;"
-        ></p>
-
-    </div>
+</div>
 
 </div>
 
@@ -790,143 +733,132 @@ textarea{
 <!-- ADMIN PANEL -->
 
 <div
-    id="admin"
-    class="admin"
+id="admin"
+class="admin"
 >
 
-    <div class="admin-header">
+<div class="admin-header">
 
-        <h2>
-            ⚙️ Admin Panel
-        </h2>
+<h2>
+⚙️ Admin Panel
+</h2>
 
-        <div>
+<div>
 
-            <button onclick="logoutAdmin()">
-                Logout
-            </button>
+<button id="logoutButton">
+Logout
+</button>
 
-            <button onclick="closeAdmin()">
-                Close
-            </button>
+<button id="closeAdminButton">
+Close
+</button>
 
-        </div>
+</div>
 
-    </div>
-
-
-    <div class="admin-container">
-
-        <div class="admin-grid">
-
-            <!-- SETTINGS -->
-
-            <div class="admin-card">
-
-                <h3>
-                    Shop Settings
-                </h3>
-
-                <input
-                    id="adminShopName"
-                    class="admin-input"
-                    placeholder="Shop name"
-                >
-
-                <button
-                    class="admin-btn blue"
-                    onclick="saveShopName()"
-                >
-                    Save Shop Name
-                </button>
+</div>
 
 
-                <hr style="margin:20px 0;border:0;border-top:1px solid #e5e7eb;">
+<div class="admin-container">
+
+<div class="admin-grid">
 
 
-                <h3>
-                    Add Product
-                </h3>
+<!-- SETTINGS / ADD PRODUCT -->
 
-                <input
-                    id="productName"
-                    class="admin-input"
-                    placeholder="Product name"
-                >
+<div class="admin-card">
 
-                <input
-                    id="productPrice"
-                    class="admin-input"
-                    type="number"
-                    min="0"
-                    placeholder="Unit price"
-                >
+<h3>
+Shop Settings
+</h3>
 
-                <button
-                    class="admin-btn blue"
-                    onclick="addProduct()"
-                >
-                    + Add Product
-                </button>
+<input
+id="adminShopName"
+class="admin-input"
+placeholder="Shop name"
+>
+
+<button
+id="saveShopButton"
+class="admin-btn blue"
+>
+Save Shop Name
+</button>
 
 
-                <hr style="margin:20px 0;border:0;border-top:1px solid #e5e7eb;">
+<hr style="margin:20px 0;border:0;border-top:1px solid #e2e8f0">
 
 
-                <h3>
-                    Orders
-                </h3>
+<h3>
+Add Product
+</h3>
 
-                <button
-                    class="admin-btn blue"
-                    onclick="loadOrders()"
-                >
-                    Refresh Orders
-                </button>
+<input
+id="productName"
+class="admin-input"
+placeholder="Product name"
+>
 
-            </div>
+<input
+id="productPrice"
+class="admin-input"
+type="number"
+min="0"
+placeholder="Unit price"
+>
 
+<button
+id="addProductButton"
+class="admin-btn blue"
+>
++ Add Product
+</button>
 
-            <!-- PRODUCTS -->
+<p style="margin-top:12px;color:#64748b;font-size:12px">
+Add as many products as you want.
+</p>
 
-            <div class="admin-card">
-
-                <h3>
-                    Products
-                </h3>
-
-                <input
-                    id="adminSearch"
-                    class="admin-input"
-                    placeholder="🔎 Search products..."
-                    oninput="renderAdminProducts()"
-                >
-
-                <div
-                    id="adminProducts"
-                    class="admin-list"
-                ></div>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <!-- ORDERS -->
+<!-- PRODUCTS -->
 
-        <div class="admin-card orders">
+<div class="admin-card">
 
-            <h3>
-                📦 Customer Orders
-            </h3>
+<h3>
+📦 Product Management
+</h3>
 
-            <div id="ordersList">
-                Loading orders...
-            </div>
+<input
+id="adminSearch"
+class="admin-search"
+placeholder="🔎 Search products..."
+>
 
-        </div>
+<div
+id="adminProducts"
+class="admin-list"
+></div>
 
-    </div>
+</div>
+
+</div>
+
+
+<!-- ORDERS -->
+
+<div class="admin-card orders">
+
+<h3>
+📋 Customer Orders
+</h3>
+
+<div id="ordersList">
+Loading...
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -936,1346 +868,1154 @@ textarea{
 <script type="module">
 
 import {
-    initializeApp
+initializeApp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-    getAuth,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    doc,
-    setDoc,
-    deleteDoc,
-    query,
-    orderBy,
-    limit
+getFirestore,
+collection,
+addDoc,
+getDocs,
+doc,
+setDoc,
+deleteDoc,
+query,
+orderBy,
+limit
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* =========================================================
-   YOUR FIREBASE CONFIG
-========================================================= */
+/* ==========================================
+   FIREBASE CONFIG
+========================================== */
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyCM6ZvVOQEVBoNPJNCBJBOJP83WAX2O5lU",
+apiKey:
+"AIzaSyCM6ZvVOQEVBoNPJNCBJBOJP83WAXO2O5lU",
 
-    authDomain:
-        "amar-social-hub.firebaseapp.com",
+authDomain:
+"amar-social-hub.firebaseapp.com",
 
-    projectId:
-        "amar-social-hub",
+projectId:
+"amar-social-hub",
 
-    storageBucket:
-        "amar-social-hub.firebasestorage.app",
+storageBucket:
+"amar-social-hub.firebasestorage.app",
 
-    messagingSenderId:
-        "12961893425",
+messagingSenderId:
+"12961893425",
 
-    appId:
-        "1:12961893425:web:c74bba9ca1c9d4badad910",
+appId:
+"1:12961893425:web:c74bba9ca1c9d4badad910",
 
-    measurementId:
-        "G-F2DPY3DWG"
+measurementId:
+"G-F2DPY3DWG"
 
 };
 
 
-/* =========================================================
-   INITIALIZE FIREBASE
-========================================================= */
-
 const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
+initializeApp(firebaseConfig);
 
 const db =
-    getFirestore(app);
+getFirestore(app);
 
 
-/* =========================================================
-   GLOBAL DATA
-========================================================= */
+/* ==========================================
+   ADMIN PASSWORD
+========================================== */
 
-let productsData = [];
+const ADMIN_PASSWORD =
+"Admin@12345";
+
+
+/* ==========================================
+   DATA
+========================================== */
+
+let products = [];
 
 let quantities = {};
 
-let editingProductId = null;
 
-
-/* =========================================================
+/* ==========================================
    SHOP SETTINGS
-========================================================= */
+========================================== */
 
-async function loadShopSettings(){
+async function loadShop(){
 
-    try{
+try{
 
-        const snapshot =
-            await getDocs(
-                collection(db,"settings")
-            );
+const ref =
+doc(db,"settings","shop");
 
+const snapshot =
+await getDocs(
+collection(db,"settings")
+);
 
-        let name =
-            "My Shop";
+let name =
+"My Shop";
 
+snapshot.forEach(item=>{
 
-        snapshot.forEach(item => {
+if(item.id==="shop"){
+name =
+item.data().name || "My Shop";
+}
 
-            if(item.id === "shop"){
+});
 
-                name =
-                    item.data().name ||
-                    "My Shop";
+document.getElementById("shopName")
+.textContent=name;
 
-            }
+document.getElementById("footerName")
+.textContent=name;
 
-        });
+document.getElementById("adminShopName")
+.value=name;
 
+document.title =
+name+" - Order Form";
 
-        document.getElementById("shopName")
-            .textContent = name;
+}catch(error){
 
-        document.getElementById("footerName")
-            .textContent = name;
+console.error(error);
 
-        document.getElementById("adminShopName")
-            .value = name;
-
-        document.title =
-            name + " - Online Order";
-
-
-    }catch(error){
-
-        console.error(error);
-
-    }
+}
 
 }
 
 
-/* =========================================================
-   PRODUCTS FROM FIRESTORE
-========================================================= */
+/* ==========================================
+   LOAD PRODUCTS
+========================================== */
 
 async function loadProducts(){
 
-    try{
+try{
 
-        const snapshot =
-            await getDocs(
-                collection(db,"products")
-            );
+const snapshot =
+await getDocs(
+collection(db,"products")
+);
 
+products=[];
 
-        productsData = [];
+snapshot.forEach(item=>{
 
+const data=item.data();
 
-        snapshot.forEach(item => {
+products.push({
 
-            const data =
-                item.data();
+id:item.id,
 
+name:data.name || "",
 
-            productsData.push({
+price:Number(data.price || 0)
 
-                id:
-                    item.id,
+});
 
-                name:
-                    data.name,
+});
 
-                price:
-                    Number(data.price || 0)
+products.sort((a,b)=>
+a.name.localeCompare(b.name)
+);
 
-            });
+renderProducts();
 
-        });
+renderAdminProducts();
 
+}catch(error){
 
-        productsData.sort((a,b) =>
-            a.name.localeCompare(b.name)
-        );
+console.error(error);
 
+document.getElementById("products")
+.innerHTML=`
+<div class="empty">
+Products load nahi ho rahe.
+</div>
+`;
 
-        renderProducts();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        document.getElementById("products")
-            .innerHTML = `
-                <div class="empty">
-                    Unable to load products.
-                    Please check Firebase Firestore.
-                </div>
-            `;
-
-    }
+}
 
 }
 
 
-/* =========================================================
-   CUSTOMER PRODUCT RENDER
-========================================================= */
+/* ==========================================
+   CUSTOMER PRODUCTS
+========================================== */
 
-window.renderProducts = function(){
+function renderProducts(){
 
-    const container =
-        document.getElementById("products");
+const container =
+document.getElementById("products");
 
+const search =
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
 
-    const search =
-        document.getElementById("search")
-            .value
-            .toLowerCase()
-            .trim();
+const filtered =
+products.filter(p=>
+p.name.toLowerCase().includes(search)
+);
 
+if(filtered.length===0){
 
-    const filtered =
-        productsData.filter(product =>
-            product.name
-                .toLowerCase()
-                .includes(search)
-        );
+container.innerHTML=`
+<div class="empty">
+No products found.
+</div>
+`;
 
+updateTotal();
 
-    if(filtered.length === 0){
+return;
 
-        container.innerHTML = `
-            <div class="empty">
-                No products found.
-            </div>
-        `;
+}
 
-        updateTotal();
+container.innerHTML="";
 
-        return;
+filtered.forEach(product=>{
 
-    }
+const quantity =
+quantities[product.id] || 0;
 
+const row =
+document.createElement("div");
 
-    container.innerHTML = "";
+row.className="product-row";
 
+row.innerHTML=`
 
-    filtered.forEach(product => {
+<div class="product-name">
+${escapeHTML(product.name)}
+</div>
 
-        const quantity =
-            quantities[product.id] || 0;
+<div class="product-price">
+PKR ${product.price.toLocaleString()}
+</div>
 
+<div class="quantity">
 
-        const row =
-            document.createElement("div");
+<button
+class="qty-btn"
+data-action="minus"
+data-id="${product.id}"
+>
+−
+</button>
 
+<input
+class="qty"
+type="number"
+min="0"
+value="${quantity}"
+data-input-id="${product.id}"
+>
 
-        row.className =
-            "product-row";
+<button
+class="qty-btn"
+data-action="plus"
+data-id="${product.id}"
+>
++
+</button>
 
+</div>
+`;
 
-        row.innerHTML = `
+container.appendChild(row);
 
-            <div class="product-name">
-                ${escapeHTML(product.name)}
-            </div>
+});
 
-            <div class="product-price">
-                PKR ${product.price.toLocaleString()}
-            </div>
+updateTotal();
 
-            <div class="quantity">
+}
 
-                <button
-                    class="qty-btn"
-                    onclick="changeQuantity('${product.id}',-1)"
-                >
-                    −
-                </button>
 
-                <input
-                    id="qty-${product.id}"
-                    class="qty"
-                    type="number"
-                    min="0"
-                    value="${quantity}"
-                    onchange="setQuantity('${product.id}',this.value)"
-                >
+/* ==========================================
+   QUANTITY EVENTS
+========================================== */
 
-                <button
-                    class="qty-btn"
-                    onclick="changeQuantity('${product.id}',1)"
-                >
-                    +
-                </button>
+document.getElementById("products")
+.addEventListener("click",event=>{
 
-            </div>
+const button =
+event.target.closest(".qty-btn");
 
-        `;
+if(!button)return;
 
+const id =
+button.dataset.id;
 
-        container.appendChild(row);
+let quantity =
+quantities[id] || 0;
 
-    });
+if(button.dataset.action==="plus")
+quantity++;
 
+if(button.dataset.action==="minus")
+quantity--;
 
-    updateTotal();
+if(quantity<0)
+quantity=0;
 
-};
+quantities[id]=quantity;
 
+renderProducts();
 
-/* =========================================================
-   QUANTITY
-========================================================= */
+});
 
-window.setQuantity = function(id,value){
 
-    let number =
-        parseInt(value) || 0;
+document.getElementById("products")
+.addEventListener("change",event=>{
 
+if(!event.target.dataset.inputId)
+return;
 
-    if(number < 0){
-        number = 0;
-    }
+const id =
+event.target.dataset.inputId;
 
+let quantity =
+parseInt(event.target.value)||0;
 
-    quantities[id] =
-        number;
+if(quantity<0)
+quantity=0;
 
+quantities[id]=quantity;
 
-    updateTotal();
+updateTotal();
 
-};
+});
 
 
-window.changeQuantity = function(id,amount){
+/* ==========================================
+   SEARCH
+========================================== */
 
-    let number =
-        quantities[id] || 0;
+document.getElementById("search")
+.addEventListener("input",()=>{
+renderProducts();
+});
 
 
-    number += amount;
-
-
-    if(number < 0){
-        number = 0;
-    }
-
-
-    quantities[id] =
-        number;
-
-
-    const input =
-        document.getElementById("qty-"+id);
-
-
-    if(input){
-        input.value = number;
-    }
-
-
-    updateTotal();
-
-};
-
-
-/* =========================================================
+/* ==========================================
    TOTAL
-========================================================= */
+========================================== */
 
 function updateTotal(){
 
-    let total =
-        0;
+let total=0;
 
-    let items =
-        0;
+let items=0;
 
+products.forEach(product=>{
 
-    productsData.forEach(product => {
+const quantity =
+quantities[product.id] || 0;
 
-        const quantity =
-            quantities[product.id] || 0;
+items+=quantity;
 
+total +=
+product.price*quantity;
 
-        items +=
-            quantity;
+});
 
+document.getElementById("totalItems")
+.textContent=items;
 
-        total +=
-            product.price * quantity;
-
-    });
-
-
-    document.getElementById("totalItems")
-        .textContent = items;
-
-
-    document.getElementById("grandTotal")
-        .textContent =
-        "PKR " + total.toLocaleString();
+document.getElementById("grandTotal")
+.textContent=
+"PKR "+total.toLocaleString();
 
 }
 
 
-/* =========================================================
-   SUBMIT ORDER TO FIRESTORE
-========================================================= */
+/* ==========================================
+   SUBMIT ORDER
+========================================== */
 
-window.submitOrder = async function(){
+document.getElementById("submitButton")
+.addEventListener("click",submitOrder);
 
-    const name =
-        document.getElementById("customerName")
-            .value
-            .trim();
 
+async function submitOrder(){
 
-    const phone =
-        document.getElementById("customerPhone")
-            .value
-            .trim();
+const name =
+document.getElementById("customerName")
+.value.trim();
 
+const phone =
+document.getElementById("customerPhone")
+.value.trim();
 
-    const address =
-        document.getElementById("customerAddress")
-            .value
-            .trim();
+const address =
+document.getElementById("customerAddress")
+.value.trim();
 
+if(!name){
 
-    if(!name){
+alert("Please enter your name.");
 
-        alert("Please enter your name.");
+return;
 
-        return;
+}
 
-    }
+if(!phone){
 
+alert("Please enter your WhatsApp / phone number.");
 
-    if(!phone){
-
-        alert("Please enter your WhatsApp / phone.");
-
-        return;
-
-    }
-
-
-    const items = [];
-
-    let grandTotal =
-        0;
-
-
-    productsData.forEach(product => {
-
-        const quantity =
-            quantities[product.id] || 0;
-
-
-        if(quantity > 0){
-
-            const itemTotal =
-                product.price * quantity;
-
-
-            items.push({
-
-                productId:
-                    product.id,
-
-                product:
-                    product.name,
-
-                unitPrice:
-                    product.price,
-
-                quantity:
-                    quantity,
-
-                total:
-                    itemTotal
-
-            });
-
-
-            grandTotal +=
-                itemTotal;
-
-        }
-
-    });
-
-
-    if(items.length === 0){
-
-        alert("Please select at least one product.");
-
-        return;
-
-    }
-
-
-    const button =
-        document.getElementById("submitButton");
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "Submitting...";
-
-
-    try{
-
-        await addDoc(
-            collection(db,"orders"),
-            {
-
-                customerName:
-                    name,
-
-                customerPhone:
-                    phone,
-
-                customerAddress:
-                    address,
-
-                items:
-                    items,
-
-                grandTotal:
-                    grandTotal,
-
-                status:
-                    "New",
-
-                createdAt:
-                    new Date().toISOString()
-
-            }
-        );
-
-
-        showSuccess();
-
-
-        quantities = {};
-
-        document.getElementById("customerName")
-            .value = "";
-
-        document.getElementById("customerPhone")
-            .value = "";
-
-        document.getElementById("customerAddress")
-            .value = "";
-
-        renderProducts();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Order submit nahi ho saka. Firebase Firestore rules check karein."
-        );
-
-    }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "🛒 Submit Order";
-
-};
-
-
-/* =========================================================
-   SUCCESS 2 SECOND POPUP
-========================================================= */
-
-function showSuccess(){
-
-    const popup =
-        document.getElementById("success");
-
-    const seconds =
-        document.getElementById("seconds");
-
-
-    let time =
-        2;
-
-
-    seconds.textContent =
-        time;
-
-
-    popup.classList.add("show");
-
-
-    const timer =
-        setInterval(() => {
-
-            time--;
-
-            seconds.textContent =
-                time;
-
-
-            if(time <= 0){
-
-                clearInterval(timer);
-
-                popup.classList.remove("show");
-
-            }
-
-        },1000);
+return;
 
 }
 
 
-/* =========================================================
-   ADMIN LOGIN
-========================================================= */
+const items=[];
 
-window.openAdminLogin = function(){
+let grandTotal=0;
 
-    document.getElementById("login")
-        .classList.add("show");
+products.forEach(product=>{
 
-};
+const quantity =
+quantities[product.id] || 0;
 
+if(quantity>0){
 
-window.closeLogin = function(){
+const total =
+product.price*quantity;
 
-    document.getElementById("login")
-        .classList.remove("show");
+items.push({
 
-};
+productId:product.id,
 
+product:product.name,
 
-window.adminLogin = async function(){
+unitPrice:product.price,
 
-    const email =
-        document.getElementById("adminEmail")
-            .value
-            .trim();
+quantity:quantity,
 
+total:total
 
-    const password =
-        document.getElementById("adminPassword")
-            .value;
+});
 
+grandTotal+=total;
 
-    const errorBox =
-        document.getElementById("loginError");
+}
+
+});
 
 
-    errorBox.textContent =
-        "";
+if(items.length===0){
 
+alert("Please select at least one product.");
 
-    if(!email || !password){
-
-        errorBox.textContent =
-            "Email and password required.";
-
-        return;
-
-    }
-
-
-    try{
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-
-        closeLogin();
-
-        openAdmin();
-
-    }catch(error){
-
-        console.error(error);
-
-        errorBox.textContent =
-            "Login failed. Email/password check karein.";
-
-    }
-
-};
-
-
-/* =========================================================
-   ADMIN PANEL
-========================================================= */
-
-function openAdmin(){
-
-    document.getElementById("admin")
-        .classList.add("show");
-
-
-    document.getElementById("adminShopName")
-        .value =
-        document.getElementById("shopName")
-            .textContent;
-
-
-    renderAdminProducts();
-
-    loadOrders();
+return;
 
 }
 
 
-window.closeAdmin = function(){
+const button =
+document.getElementById("submitButton");
 
-    document.getElementById("admin")
-        .classList.remove("show");
+button.disabled=true;
 
-};
+button.textContent="Submitting...";
 
 
-window.logoutAdmin = async function(){
+try{
 
-    await signOut(auth);
+await addDoc(
+collection(db,"orders"),
+{
 
-    closeAdmin();
+customerName:name,
 
-};
+customerPhone:phone,
 
+customerAddress:address,
 
-/* =========================================================
-   SAVE SHOP NAME
-========================================================= */
+items:items,
 
-window.saveShopName = async function(){
+grandTotal:grandTotal,
 
-    const name =
-        document.getElementById("adminShopName")
-            .value
-            .trim();
+status:"New",
 
-
-    if(!name){
-
-        alert("Shop name required.");
-
-        return;
-
-    }
-
-
-    try{
-
-        await setDoc(
-            doc(db,"settings","shop"),
-            {
-                name:
-                    name
-            }
-        );
-
-
-        document.getElementById("shopName")
-            .textContent = name;
-
-        document.getElementById("footerName")
-            .textContent = name;
-
-        document.title =
-            name + " - Online Order";
-
-
-        alert("Shop name saved.");
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Shop name save nahi hua. Firestore rules check karein."
-        );
-
-    }
-
-};
-
-
-/* =========================================================
-   ADD PRODUCT
-========================================================= */
-
-window.addProduct = async function(){
-
-    const name =
-        document.getElementById("productName")
-            .value
-            .trim();
-
-
-    const price =
-        Number(
-            document.getElementById("productPrice")
-                .value
-        );
-
-
-    if(!name){
-
-        alert("Product name required.");
-
-        return;
-
-    }
-
-
-    if(!Number.isFinite(price) || price < 0){
-
-        alert("Valid price enter karein.");
-
-        return;
-
-    }
-
-
-    try{
-
-        await addDoc(
-            collection(db,"products"),
-            {
-
-                name:
-                    name,
-
-                price:
-                    price,
-
-                createdAt:
-                    new Date().toISOString()
-
-            }
-        );
-
-
-        document.getElementById("productName")
-            .value = "";
-
-        document.getElementById("productPrice")
-            .value = "";
-
-
-        await loadProducts();
-
-        renderAdminProducts();
-
-
-        alert("Product added successfully.");
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Product add nahi hua. Firestore rules check karein."
-        );
-
-    }
-
-};
-
-
-/* =========================================================
-   ADMIN PRODUCT LIST
-========================================================= */
-
-window.renderAdminProducts = function(){
-
-    const container =
-        document.getElementById("adminProducts");
-
-
-    const search =
-        document.getElementById("adminSearch")
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    const filtered =
-        productsData.filter(product =>
-            product.name
-                .toLowerCase()
-                .includes(search)
-        );
-
-
-    if(filtered.length === 0){
-
-        container.innerHTML =
-            `<div class="empty">No products.</div>`;
-
-        return;
-
-    }
-
-
-    container.innerHTML = "";
-
-
-    filtered.forEach(product => {
-
-        const row =
-            document.createElement("div");
-
-
-        row.className =
-            "admin-product";
-
-
-        row.innerHTML = `
-
-            <div>
-                <strong>
-                    ${escapeHTML(product.name)}
-                </strong>
-            </div>
-
-            <div>
-                <strong>
-                    PKR ${product.price.toLocaleString()}
-                </strong>
-            </div>
-
-            <div class="admin-actions">
-
-                <button
-                    class="admin-btn gray"
-                    onclick="editProduct('${product.id}')"
-                >
-                    Edit
-                </button>
-
-                <button
-                    class="admin-btn red"
-                    onclick="deleteProduct('${product.id}')"
-                >
-                    Delete
-                </button>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(row);
-
-    });
-
-};
-
-
-/* =========================================================
-   EDIT PRODUCT
-========================================================= */
-
-window.editProduct = async function(id){
-
-    const product =
-        productsData.find(item =>
-            item.id === id
-        );
-
-
-    if(!product){
-        return;
-    }
-
-
-    const newName =
-        prompt(
-            "Product name:",
-            product.name
-        );
-
-
-    if(newName === null){
-        return;
-    }
-
-
-    const newPrice =
-        prompt(
-            "Unit price:",
-            product.price
-        );
-
-
-    if(newPrice === null){
-        return;
-    }
-
-
-    const price =
-        Number(newPrice);
-
-
-    if(!newName.trim() ||
-       !Number.isFinite(price) ||
-       price < 0){
-
-        alert("Invalid information.");
-
-        return;
-
-    }
-
-
-    try{
-
-        await setDoc(
-            doc(db,"products",id),
-            {
-
-                name:
-                    newName.trim(),
-
-                price:
-                    price,
-
-                updatedAt:
-                    new Date().toISOString()
-
-            }
-        );
-
-
-        await loadProducts();
-
-        renderAdminProducts();
-
-
-        alert("Product updated.");
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Product update nahi hua."
-        );
-
-    }
-
-};
-
-
-/* =========================================================
-   DELETE PRODUCT
-========================================================= */
-
-window.deleteProduct = async function(id){
-
-    const product =
-        productsData.find(item =>
-            item.id === id
-        );
-
-
-    if(!product){
-        return;
-    }
-
-
-    if(!confirm(
-        'Delete "' +
-        product.name +
-        '"?'
-    )){
-
-        return;
-
-    }
-
-
-    try{
-
-        await deleteDoc(
-            doc(db,"products",id)
-        );
-
-
-        delete quantities[id];
-
-
-        await loadProducts();
-
-        renderAdminProducts();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Product delete nahi hua."
-        );
-
-    }
-
-};
-
-
-/* =========================================================
-   LOAD ORDERS
-========================================================= */
-
-window.loadOrders = async function(){
-
-    const container =
-        document.getElementById("ordersList");
-
-
-    container.innerHTML =
-        "Loading orders...";
-
-
-    try{
-
-        const ordersQuery =
-            query(
-                collection(db,"orders"),
-                orderBy("createdAt","desc"),
-                limit(100)
-            );
-
-
-        const snapshot =
-            await getDocs(ordersQuery);
-
-
-        if(snapshot.empty){
-
-            container.innerHTML =
-                `<div class="empty">
-                    No orders yet.
-                </div>`;
-
-            return;
-
-        }
-
-
-        container.innerHTML = "";
-
-
-        snapshot.forEach(orderDoc => {
-
-            const order =
-                orderDoc.data();
-
-
-            const items =
-                (order.items || [])
-                .map(item => `
-
-                    <div>
-                        ${escapeHTML(item.product)}
-                        × ${item.quantity}
-                        —
-                        PKR ${Number(item.total).toLocaleString()}
-                    </div>
-
-                `)
-                .join("");
-
-
-            const card =
-                document.createElement("div");
-
-
-            card.className =
-                "order-card";
-
-
-            card.innerHTML = `
-
-                <div class="order-top">
-
-                    <span>
-                        ${escapeHTML(order.customerName || "Customer")}
-                    </span>
-
-                    <span>
-                        ${escapeHTML(order.status || "New")}
-                    </span>
-
-                </div>
-
-                <div style="margin-top:7px;color:#64748b;font-size:13px;">
-
-                    📞 ${escapeHTML(order.customerPhone || "")}
-
-                    <br>
-
-                    📍 ${escapeHTML(order.customerAddress || "")}
-
-                </div>
-
-                <div class="order-items">
-
-                    ${items}
-
-                </div>
-
-                <div class="order-total">
-
-                    Grand Total:
-                    PKR ${Number(order.grandTotal || 0).toLocaleString()}
-
-                </div>
-
-                <div style="margin-top:8px;color:#94a3b8;font-size:12px;">
-
-                    ${escapeHTML(order.createdAt || "")}
-
-                </div>
-
-            `;
-
-
-            container.appendChild(card);
-
-        });
-
-
-    }catch(error){
-
-        console.error(error);
-
-        container.innerHTML = `
-            <div style="color:#dc2626;padding:15px;">
-                Orders load nahi ho rahe.
-                Firestore rules/index check karein.
-            </div>
-        `;
-
-    }
-
-};
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHTML(value){
-
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+createdAt:
+new Date().toISOString()
 
 }
-
-
-/* =========================================================
-   ADMIN ACCESS
-========================================================= */
-
-/*
-    Customer ko Settings button NAHI dikhaya gaya.
-
-    Admin panel open karne ke liye:
-
-    yourdomain.com/?admin=1
-
-*/
-
-function checkAdminURL(){
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    if(params.get("admin") === "1"){
-
-        setTimeout(() => {
-
-            openAdminLogin();
-
-        },500);
-
-    }
-
-}
-
-
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
-onAuthStateChanged(
-    auth,
-    user => {
-
-        if(user){
-
-            console.log(
-                "Admin logged in:",
-                user.email
-            );
-
-        }
-
-    }
 );
 
 
-/* =========================================================
+quantities={};
+
+document.getElementById("customerName")
+.value="";
+
+document.getElementById("customerPhone")
+.value="";
+
+document.getElementById("customerAddress")
+.value="";
+
+renderProducts();
+
+showSuccess();
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Order submit nahi hua. Firebase Firestore Rules check karein."
+);
+
+}
+
+
+button.disabled=false;
+
+button.textContent="🛒 Submit Order";
+
+}
+
+
+/* ==========================================
+   SUCCESS POPUP - 2 SECONDS
+========================================== */
+
+function showSuccess(){
+
+const popup =
+document.getElementById("success");
+
+const seconds =
+document.getElementById("seconds");
+
+let time=2;
+
+seconds.textContent=time;
+
+popup.classList.add("show");
+
+const timer=setInterval(()=>{
+
+time--;
+
+seconds.textContent=time;
+
+if(time<=0){
+
+clearInterval(timer);
+
+popup.classList.remove("show");
+
+}
+
+},1000);
+
+}
+
+
+/* ==========================================
+   ADMIN LOGIN
+========================================== */
+
+function openLogin(){
+
+document.getElementById("login")
+.classList.add("show");
+
+document.getElementById("adminPassword")
+.focus();
+
+}
+
+
+function closeLogin(){
+
+document.getElementById("login")
+.classList.remove("show");
+
+document.getElementById("adminPassword")
+.value="";
+
+document.getElementById("loginError")
+.textContent="";
+
+}
+
+
+document.getElementById("loginButton")
+.addEventListener("click",()=>{
+
+const password =
+document.getElementById("adminPassword")
+.value;
+
+if(password!==ADMIN_PASSWORD){
+
+document.getElementById("loginError")
+.textContent="Incorrect admin password.";
+
+return;
+
+}
+
+closeLogin();
+
+openAdmin();
+
+});
+
+
+document.getElementById("adminPassword")
+.addEventListener("keydown",event=>{
+
+if(event.key==="Enter")
+document.getElementById("loginButton").click();
+
+});
+
+
+document.getElementById("cancelLogin")
+.addEventListener("click",closeLogin);
+
+
+/* ==========================================
+   ADMIN PANEL
+========================================== */
+
+function openAdmin(){
+
+document.getElementById("admin")
+.classList.add("show");
+
+document.getElementById("adminShopName")
+.value =
+document.getElementById("shopName")
+.textContent;
+
+renderAdminProducts();
+
+loadOrders();
+
+}
+
+
+document.getElementById("closeAdminButton")
+.addEventListener("click",()=>{
+
+document.getElementById("admin")
+.classList.remove("show");
+
+});
+
+
+document.getElementById("logoutButton")
+.addEventListener("click",()=>{
+
+document.getElementById("admin")
+.classList.remove("show");
+
+});
+
+
+/* ==========================================
+   SHOP NAME
+========================================== */
+
+document.getElementById("saveShopButton")
+.addEventListener("click",async()=>{
+
+const name =
+document.getElementById("adminShopName")
+.value.trim();
+
+if(!name){
+
+alert("Shop name required.");
+
+return;
+
+}
+
+try{
+
+await setDoc(
+doc(db,"settings","shop"),
+{
+name:name
+}
+);
+
+document.getElementById("shopName")
+.textContent=name;
+
+document.getElementById("footerName")
+.textContent=name;
+
+document.title=
+name+" - Order Form";
+
+alert("Shop name saved successfully.");
+
+}catch(error){
+
+console.error(error);
+
+alert("Shop name save nahi hua.");
+
+}
+
+});
+
+
+/* ==========================================
+   ADD PRODUCT
+========================================== */
+
+document.getElementById("addProductButton")
+.addEventListener("click",async()=>{
+
+const name =
+document.getElementById("productName")
+.value.trim();
+
+const price =
+Number(
+document.getElementById("productPrice")
+.value
+);
+
+if(!name){
+
+alert("Product name required.");
+
+return;
+
+}
+
+if(!Number.isFinite(price)||price<0){
+
+alert("Valid price enter karein.");
+
+return;
+
+}
+
+try{
+
+await addDoc(
+collection(db,"products"),
+{
+
+name:name,
+
+price:price,
+
+createdAt:
+new Date().toISOString()
+
+}
+);
+
+document.getElementById("productName")
+.value="";
+
+document.getElementById("productPrice")
+.value="";
+
+await loadProducts();
+
+alert("Product added successfully.");
+
+}catch(error){
+
+console.error(error);
+
+alert("Product add nahi hua.");
+
+}
+
+});
+
+
+/* ==========================================
+   ADMIN PRODUCT LIST
+========================================== */
+
+function renderAdminProducts(){
+
+const container =
+document.getElementById("adminProducts");
+
+const search =
+document.getElementById("adminSearch")
+.value
+.toLowerCase()
+.trim();
+
+const filtered =
+products.filter(p=>
+p.name.toLowerCase().includes(search)
+);
+
+if(filtered.length===0){
+
+container.innerHTML=
+`<div class="empty">No products found.</div>`;
+
+return;
+
+}
+
+container.innerHTML="";
+
+filtered.forEach(product=>{
+
+const row =
+document.createElement("div");
+
+row.className="admin-product";
+
+row.innerHTML=`
+
+<div>
+<strong>
+${escapeHTML(product.name)}
+</strong>
+</div>
+
+<div>
+<strong>
+PKR ${product.price.toLocaleString()}
+</strong>
+</div>
+
+<div class="admin-actions">
+
+<button
+class="admin-btn gray"
+data-edit="${product.id}"
+>
+Edit
+</button>
+
+<button
+class="admin-btn red"
+data-delete="${product.id}"
+>
+Delete
+</button>
+
+</div>
+
+`;
+
+container.appendChild(row);
+
+});
+
+}
+
+
+/* ==========================================
+   ADMIN SEARCH
+========================================== */
+
+document.getElementById("adminSearch")
+.addEventListener("input",renderAdminProducts);
+
+
+/* ==========================================
+   EDIT / DELETE PRODUCT
+========================================== */
+
+document.getElementById("adminProducts")
+.addEventListener("click",async event=>{
+
+const edit =
+event.target.dataset.edit;
+
+const del =
+event.target.dataset.delete;
+
+
+if(edit){
+
+const product =
+products.find(p=>p.id===edit);
+
+if(!product)return;
+
+const name =
+prompt("Product name:",product.name);
+
+if(name===null)return;
+
+const price =
+prompt("Unit price:",product.price);
+
+if(price===null)return;
+
+const newPrice =
+Number(price);
+
+if(!name.trim()||
+!Number.isFinite(newPrice)||
+newPrice<0){
+
+alert("Invalid information.");
+
+return;
+
+}
+
+try{
+
+await setDoc(
+doc(db,"products",edit),
+{
+
+name:name.trim(),
+
+price:newPrice,
+
+updatedAt:
+new Date().toISOString()
+
+}
+);
+
+await loadProducts();
+
+}catch(error){
+
+console.error(error);
+
+alert("Product update failed.");
+
+}
+
+}
+
+
+if(del){
+
+const product =
+products.find(p=>p.id===del);
+
+if(!product)return;
+
+if(!confirm(
+'Delete "'+product.name+'"?'
+))
+return;
+
+try{
+
+await deleteDoc(
+doc(db,"products",del)
+);
+
+delete quantities[del];
+
+await loadProducts();
+
+}catch(error){
+
+console.error(error);
+
+alert("Product delete failed.");
+
+}
+
+}
+
+});
+
+
+/* ==========================================
+   ORDERS
+========================================== */
+
+async function loadOrders(){
+
+const container =
+document.getElementById("ordersList");
+
+container.innerHTML="Loading orders...";
+
+try{
+
+const q =
+query(
+collection(db,"orders"),
+orderBy("createdAt","desc"),
+limit(100)
+);
+
+const snapshot =
+await getDocs(q);
+
+if(snapshot.empty){
+
+container.innerHTML=
+`<div class="empty">No orders yet.</div>`;
+
+return;
+
+}
+
+container.innerHTML="";
+
+snapshot.forEach(orderDoc=>{
+
+const order =
+orderDoc.data();
+
+const card =
+document.createElement("div");
+
+card.className="order-card";
+
+let itemHTML="";
+
+(order.items||[]).forEach(item=>{
+
+itemHTML+=`
+
+<div>
+${escapeHTML(item.product)}
+× ${item.quantity}
+— PKR ${Number(item.total).toLocaleString()}
+</div>
+
+`;
+
+});
+
+card.innerHTML=`
+
+<div class="order-top">
+
+<span>
+${escapeHTML(order.customerName||"Customer")}
+</span>
+
+<span>
+${escapeHTML(order.status||"New")}
+</span>
+
+</div>
+
+<div style="margin-top:8px;color:#64748b;font-size:13px">
+
+📞 ${escapeHTML(order.customerPhone||"")}
+
+<br>
+
+📍 ${escapeHTML(order.customerAddress||"")}
+
+</div>
+
+<div class="order-items">
+${itemHTML}
+</div>
+
+<div class="order-total">
+
+Grand Total:
+PKR ${Number(order.grandTotal||0).toLocaleString()}
+
+</div>
+
+<div style="margin-top:8px;color:#94a3b8;font-size:12px">
+
+${escapeHTML(order.createdAt||"")}
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+}catch(error){
+
+console.error(error);
+
+container.innerHTML=
+`
+<div style="color:#dc2626;padding:15px">
+Orders load nahi ho rahe.
+Firestore Rules check karein.
+</div>
+`;
+
+}
+
+}
+
+
+/* ==========================================
+   HTML SECURITY
+========================================== */
+
+function escapeHTML(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================
+   HIDDEN ADMIN ACCESS
+========================================== */
+
+function checkAdmin(){
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+if(params.get("admin")==="1"){
+
+setTimeout(
+openLogin,
+400
+);
+
+}
+
+}
+
+
+/* ==========================================
    START
-========================================================= */
+========================================== */
 
 document.getElementById("year")
-    .textContent =
-    new Date().getFullYear();
+.textContent=
+new Date().getFullYear();
 
-
-loadShopSettings();
+loadShop();
 
 loadProducts();
 
-checkAdminURL();
+checkAdmin();
 
 </script>
 
